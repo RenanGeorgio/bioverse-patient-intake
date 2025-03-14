@@ -1,18 +1,18 @@
 "use client"
 
-import * as React from "react";
-import { Card, CardTitle, CardHeader, CardDescription, CardContent, CardFooter } from "@/components/Card";
-import Input from "@/components/Input";
-import Label from "@/components/Label";
-import Button from "@/components/Button";
-import Textarea from "@/components/Textarea";
-import { cn } from "@/lib/utils";
+import { ComponentProps, useActionState } from 'react';
+import { Check } from 'lucide-react';
+import { cn } from '@/utils/cn';
+import { contactFormAction } from '@/lib/form/actions';
+import { Card, CardTitle, CardHeader, CardDescription, CardContent, CardFooter } from '@/components/Card';
+import Input from '@/components/Input';
+import Label from '@/components/Label';
+import Button from '@/components/Button';
+import Textarea from '@/components/Textarea';
 
-import { contactFormAction } from "@/lib/form/actions";
-import { Check } from "lucide-react"
 
-export function ContactForm({ className }: React.ComponentProps<typeof Card>) {
-  const [state, formAction, pending] = React.useActionState(contactFormAction, {
+const FormComponent = ({ className }: ComponentProps<typeof Card>) => {
+  const [state, formAction, pending] = useActionState(contactFormAction, {
     defaultValues: {
       name: "",
       email: "",
@@ -20,7 +20,7 @@ export function ContactForm({ className }: React.ComponentProps<typeof Card>) {
     },
     success: false,
     errors: null,
-  })
+  });
 
   return (
     <Card className={cn("w-full max-w-md", className)}>
@@ -104,5 +104,7 @@ export function ContactForm({ className }: React.ComponentProps<typeof Card>) {
         </CardFooter>
       </form>
     </Card>
-  )
+  );
 }
+
+export default FormComponent;

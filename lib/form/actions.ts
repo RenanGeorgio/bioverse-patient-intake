@@ -1,7 +1,7 @@
 "use server"
 
-import { contactFormSchema } from "@/lib/schema"
-import { z } from "zod"
+import { z } from 'zod';
+import { contactFormSchema } from '@/lib/form/schema';
 
 export async function contactFormAction(_prevState: unknown, formData: FormData) {
   const defaultValues = z.record(z.string(), z.string()).parse(Object.fromEntries(formData.entries()))
@@ -42,4 +42,3 @@ export async function contactFormAction(_prevState: unknown, formData: FormData)
     }
   }
 }
-

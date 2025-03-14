@@ -1,7 +1,8 @@
-import { redirect } from 'next/navigation';
+//import { redirect } from 'next/navigation';
 import Head from 'next/head';
 import { createClient } from '@/lib/supabase/server';
-import Questionnaires from '@/components/Questionnaires';
+//import Questionnaires from '@/components/Questionnaires';
+import FormComponent from '@/components/Form';
 import { getURL } from '@/utils/helpers';
 
 import '@/styles/app.css';
@@ -14,9 +15,9 @@ export default async function App() {
     data: { user }
   } = await supabase.auth.getUser();
 
-  if (!user) {
+  /*if (!user) {
     return redirect('/signin');
-  }
+  }*/
 
   return (
     <>
@@ -27,12 +28,12 @@ export default async function App() {
         <link rel="icon" href={getURL("/favicon.ico")} />
       </Head>
       <div className="w-full h-full bg-200">
-        {user && (
+        {true && (
           <div
             className="w-full h-full flex flex-col justify-center items-center p-4"
             style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
           >
-            <Questionnaires />
+            <FormComponent />
           </div>
         )}
       </div>
