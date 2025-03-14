@@ -2,7 +2,6 @@
 
 import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import Content from './Content';
-import ToggleSwitch from '@/components/ToggleSwitch';
 import './Form.module.css';
 
 
@@ -12,12 +11,11 @@ type Data = {
 }
 
 interface FormProps {
-    onSubmit: (name: string, email: string, admin: boolean) => void;
+    onSubmit: (name: string, email: string) => void;
 }
 
 const Form = ({ onSubmit }: FormProps) => {
     const [data, setData] = useState<Data | undefined>(undefined);
-    const [admin, setAdmin] = useState<boolean>(false);
     const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
     let control: string | number | readonly string[] | undefined = undefined;
@@ -27,7 +25,7 @@ const Form = ({ onSubmit }: FormProps) => {
 
         if (data) {
             const { name, email } = data;
-            onSubmit(name, email, admin);
+            onSubmit(name, email);
         }
     };
 
@@ -68,9 +66,6 @@ const Form = ({ onSubmit }: FormProps) => {
                     </button>
                 </div>
             </form>
-            <div className="w-full h-full p-5 flex justify-center items-center">
-                <ToggleSwitch checked={admin} onChange={setAdmin} />
-            </div>
         </div>
     );
 }
