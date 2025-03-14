@@ -5,6 +5,7 @@ import { User } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
 import { Database } from '@/lib/schema';
 import { getQuestions, addQuestions } from '@/lib/supabase/queries';
+import QuestionComponent from './Question';
 
 type Question = Database['public']['Tables']['todos']['Row']
 
@@ -98,7 +99,7 @@ export default function QuestionList() {
       <div className="bg-white shadow overflow-hidden rounded-md">
         <ul>
           {questions.map((question) => (
-            <Question key={question.id} question={question} onDelete={() => deleteQuestion(question.id)} />
+            <QuestionComponent key={question.id} question={question} onDelete={() => deleteQuestion(question.id)} />
           ))}
         </ul>
       </div>

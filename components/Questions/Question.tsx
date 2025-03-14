@@ -8,7 +8,7 @@ import { updateQuestion } from '@/lib/supabase/queries';
 type Question = Database['public']['Tables']['todos']['Row']
 
 
-const Question = ({ question, onDelete }: { question: Question; onDelete: () => void }) => {
+const QuestionComponent = ({ question, onDelete }: { question: Question; onDelete: () => void }) => {
   const supabase = createClient();
   const [isCompleted, setIsCompleted] = useState<boolean | null>(question.is_complete);
 
@@ -68,4 +68,4 @@ const Question = ({ question, onDelete }: { question: Question; onDelete: () => 
   );
 }
 
-export default Question;
+export default QuestionComponent;
