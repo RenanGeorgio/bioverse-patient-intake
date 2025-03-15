@@ -13,7 +13,7 @@ type Question = Database['public']['Tables']['todos']['Row']
 export default function QuestionList() {
   const supabase = createClient();
 
-  const userRef = useRef<User>();
+  const userRef = useRef<User | undefined>(undefined);
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [newTaskText, setNewTaskText] = useState('');

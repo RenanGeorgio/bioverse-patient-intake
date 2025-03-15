@@ -1,6 +1,7 @@
 "use client"
 
-import { ComponentProps, useActionState } from 'react';
+import { ComponentProps } from 'react';
+import { useFormState } from 'react-dom'
 import { Check } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { contactFormAction } from '@/lib/form/actions';
@@ -12,7 +13,7 @@ import Textarea from '@/components/Textarea';
 
 
 const FormComponent = ({ className }: ComponentProps<typeof Card>) => {
-  const [state, formAction, pending] = useActionState(contactFormAction, {
+  const [state, formAction, pending] = useFormState(contactFormAction, {
     defaultValues: {
       name: "",
       email: "",
