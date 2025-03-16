@@ -12,12 +12,19 @@ import Button from '@/components/Button';
 import Textarea from '@/components/Textarea';
 
 
-const FormComponent = ({ className }: ComponentProps<typeof Card>) => {
+const PersonalForm = ({ className }: ComponentProps<typeof Card>) => {
   const [state, formAction, pending] = useFormState(contactFormAction, {
     defaultValues: {
       name: "",
-      email: "",
-      message: "",
+      birth: "",
+      gender: "",
+      maritalStatus: "",
+      address: "",
+      _ocupacao: "", // trocar nome
+      reason: "",
+      symptomsStart: "",
+      hasTreated: "",
+      aboutTreated: "",
     },
     success: false,
     errors: null,
@@ -108,4 +115,4 @@ const FormComponent = ({ className }: ComponentProps<typeof Card>) => {
   );
 }
 
-export default FormComponent;
+export default PersonalForm;
