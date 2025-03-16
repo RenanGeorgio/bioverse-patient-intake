@@ -3,8 +3,9 @@
 import { z } from 'zod';
 import { contactFormSchema } from '@/lib/form/schema';
 
+
 export async function contactFormAction(_prevState: unknown, formData: FormData) {
-  const defaultValues = z.record(z.string(), z.string()).parse(Object.fromEntries(formData.entries()))
+  const defaultValues = z.record(z.string(), z.string()).parse(Object.fromEntries(formData.entries()));
 
   try {
     const data = contactFormSchema.parse(Object.fromEntries(formData))
