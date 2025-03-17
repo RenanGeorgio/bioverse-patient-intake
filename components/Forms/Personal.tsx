@@ -1,10 +1,10 @@
 "use client"
 
 import { ComponentProps } from 'react';
-import { useFormState } from 'react-dom'
+import { useFormState } from 'react-dom';
 import { Check } from 'lucide-react';
 import { cn } from '@/utils/cn';
-import { contactFormAction } from '@/lib/form/actions';
+import { personalFormAction } from '@/lib/form/actions';
 import { Card, CardTitle, CardHeader, CardDescription, CardContent, CardFooter } from '@/components/Card';
 import Input from '@/components/Input';
 import Label from '@/components/Label';
@@ -12,15 +12,15 @@ import Button from '@/components/Button';
 import Textarea from '@/components/Textarea';
 
 
-const PersonalForm = ({ className }: ComponentProps<typeof Card>) => {
-  const [state, formAction, pending] = useFormState(contactFormAction, {
+const Personal = ({ className }: ComponentProps<typeof Card>) => {
+  const [state, formAction, pending] = useFormState(personalFormAction, {
     defaultValues: {
       name: "",
       birth: "",
       gender: "",
       maritalStatus: "",
       address: "",
-      _ocupacao: "", // trocar nome
+      occupation: "",
       reason: "",
       symptomsStart: "",
       hasTreated: "",
@@ -115,4 +115,4 @@ const PersonalForm = ({ className }: ComponentProps<typeof Card>) => {
   );
 }
 
-export default PersonalForm;
+export default Personal;

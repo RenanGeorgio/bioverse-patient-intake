@@ -1,9 +1,7 @@
 "use client"
 
 import { Tabs, TabsContent, TabElement, TabsTrigger } from '@/components/Tabs';
-import { ContactForm } from "@/components/contact-form"
-import { SupportForm } from "@/components/support-form"
-import { FeedbackForm } from "@/components/feedback-form"
+import { PersonalForm, SupportForm, FeedbackForm } from '@/components/Forms';
 import Container from '@/components/Container';
 
 
@@ -23,7 +21,7 @@ export default function Intake() {
             <TabsTrigger value="feedback">Feedback</TabsTrigger>
           </TabElement>
           <TabsContent value="general" className="mt-6 flex justify-center">
-            <ContactForm />
+            <PersonalForm />
           </TabsContent>
           <TabsContent value="support" className="mt-6 flex justify-center">
             <SupportForm />
@@ -34,5 +32,5 @@ export default function Intake() {
         </Tabs>
       </div>
     </Container>
-  )
+  );
 }

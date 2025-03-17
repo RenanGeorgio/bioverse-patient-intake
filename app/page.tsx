@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { createClient } from '@/lib/supabase/server';
 //import Questionnaires from '@/components/Questionnaires';
-import FormComponent from '@/components/Form';
+import Intake from '@/components/Intake';
 import { getURL } from '@/utils/helpers';
 
 import '@/styles/app.css';
@@ -33,7 +33,7 @@ export default async function App() {
             className="w-full h-full flex flex-col justify-center items-center p-4"
             style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
           >
-            <FormComponent />
+            <Intake />
           </div>
         )}
       </div>

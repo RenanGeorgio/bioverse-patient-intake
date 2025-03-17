@@ -1,19 +1,20 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardTitle, CardHeader, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { cn } from "@/lib/utils"
+import { useFormState } from 'react-dom';
+import { Card, CardTitle, CardHeader, CardDescription, CardContent, CardFooter } from "@/components/Card"
+import Input from "@/components/Input"
+import Label from "@/components/Label"
+import Button from "@/components/Button"
+import Textarea from "@/components/Textarea"
+import { RadioGroup, RadioGroupItem } from "@/components/RadioGroup"
+import { cn } from "@/utils/cn"
 
 import { feedbackFormAction } from "@/lib/form/actions"
 import { Check } from "lucide-react"
 
 export function FeedbackForm({ className }: React.ComponentProps<typeof Card>) {
-  const [state, formAction, pending] = React.useActionState(feedbackFormAction, {
+  const [state, formAction, pending] = useFormState(feedbackFormAction, {
     defaultValues: {
       name: "",
       email: "",
