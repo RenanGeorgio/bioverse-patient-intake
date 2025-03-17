@@ -1,23 +1,25 @@
-//import { redirect } from 'next/navigation';
-import Head from 'next/head';
+import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-//import Questionnaires from '@/components/Questionnaires';
-import Intake from '@/components/Intake';
+import Head from 'next/head';
+import Questionnaires from '@/components/Questionnaires';
 import { getURL } from '@/utils/helpers';
 
-import '@/styles/app.css';
-  
-
-export default async function App() {
+export default async function QuestionnairePage({
+  params
+}: {
+  params: Promise<{ id: string }>
+}) {
   const supabase = await createClient();
 
   const {
     data: { user }
   } = await supabase.auth.getUser();
 
-  /*if (!user) {
+  if (!user) {
     return redirect('/signin');
-  }*/
+  }
+
+  const { id } = await params;
 
   return (
     <>
@@ -28,14 +30,12 @@ export default async function App() {
         <link rel="icon" href={getURL("/favicon.ico")} />
       </Head>
       <div className="w-full h-full bg-200">
-        {true && (
-          <div
-            className="w-full h-full flex flex-col justify-center items-center p-4"
-            style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
-          >
-            <Intake />
-          </div>
-        )}
+        <div
+          className="w-full h-full flex flex-col justify-center items-center p-4"
+          style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
+        >
+          <Questionnaires />
+        </div>
       </div>
     </>
   );
