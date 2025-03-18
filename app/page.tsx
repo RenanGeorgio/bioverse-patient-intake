@@ -1,4 +1,4 @@
-//import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import Head from 'next/head';
 import { createClient } from '@/lib/supabase/server';
 //import Questionnaires from '@/components/Questionnaires';
@@ -15,9 +15,9 @@ export default async function App() {
     data: { user }
   } = await supabase.auth.getUser();
 
-  /*if (!user) {
+  if (!user) {
     return redirect('/signin');
-  }*/
+  }
 
   return (
     <>

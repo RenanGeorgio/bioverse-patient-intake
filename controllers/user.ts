@@ -25,7 +25,7 @@ export async function hasUser(name: string, email: string) {
     return null;
 }
 
-export async function setUser({ name, email, id, is_admin }: AppUser) {
+export async function setUser({ name, email, id }: AppUser) {
     const response = await fetch(getURL('/api/user'),
         {
             method: "POST",
@@ -33,7 +33,6 @@ export async function setUser({ name, email, id, is_admin }: AppUser) {
                 name: name,
                 email: email,
                 id: id,
-                is_admin: is_admin,
             })
         }
     );
@@ -55,4 +54,25 @@ export async function cleanUser() {
     }
 
     return false;
+}
+
+export async function setAdmin({ name, email, id }: AppUser) {
+    const response = await fetch(getURL('/api'),
+        {
+            method: "POST",
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                id: id,
+            })
+        }
+    );
+
+    if (response?.status == 200) {
+        const { data } = await response.json();
+        console.log(data);
+        return data;
+    }
+
+    return null;
 }
