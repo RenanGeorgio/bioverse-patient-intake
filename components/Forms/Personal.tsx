@@ -10,6 +10,8 @@ import Input from '@/components/Input';
 import Label from '@/components/Label';
 import Button from '@/components/Button';
 import Textarea from '@/components/Textarea';
+import { RadioGroup, RadioGroupItem } from '@/components/RadioGroup';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/Select';
 
 
 const Personal = ({ className }: ComponentProps<typeof Card>) => {
@@ -33,15 +35,15 @@ const Personal = ({ className }: ComponentProps<typeof Card>) => {
   return (
     <Card className={cn("w-full max-w-md", className)}>
       <CardHeader>
-        <CardTitle>How can we help?</CardTitle>
-        <CardDescription>Need help with your project? We&apos;re here to assist you.</CardDescription>
+        <CardTitle>Patiente Form</CardTitle>
+        <CardDescription>Fill all the questions</CardDescription>
       </CardHeader>
       <form action={formAction}>
         <CardContent className="flex flex-col gap-6">
           {state.success ? (
             <p className="text-muted-foreground flex items-center gap-2 text-sm">
               <Check className="size-4" />
-              Your message has been sent. Thank you.
+              Your answer has been sent. Thank you.
             </p>
           ) : null}
           <div className="group/field grid gap-2" data-invalid={!!state.errors?.name}>
@@ -61,6 +63,51 @@ const Personal = ({ className }: ComponentProps<typeof Card>) => {
             {state.errors?.name && (
               <p id="error-name" className="text-destructive text-sm">
                 {state.errors.name}
+              </p>
+            )}
+          </div>
+          <div className="group/field grid gap-2" data-invalid={!!state.errors?.birth}>
+            <Label htmlFor="birth" className="group-data-[invalid=true]/field:text-destructive">
+              Birth day <span aria-hidden="true">*</span>
+            </Label>
+            <Input
+              id="birth"
+              name="birth"
+              placeholder="MM/DD/YYYY"
+              className="group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
+              disabled={pending}
+              aria-invalid={!!state.errors?.birth}
+              aria-errormessage="error-birth"
+              defaultValue={state.defaultValues.birth}
+            />
+            {state.errors?.birth && (
+              <p id="error-birth" className="text-destructive text-sm">
+                {state.errors.birth}
+              </p>
+            )}
+          </div>
+          <div className="group/field grid gap-2" data-invalid={!!state.errors?.gender}>
+            <Label htmlFor="gender" className="group-data-[invalid=true]/field:text-destructive">
+              Gender <span aria-hidden="true">*</span>
+            </Label>
+            <Select name="gender" defaultValue={state.defaultValues.gender} disabled={pending}>
+              <SelectTrigger
+                id="gender"
+                className="group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
+                aria-invalid={!!state.errors?.gender}
+                aria-errormessage="error-gender"
+              >
+                <SelectValue placeholder="Select your gender" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="masc">MASC.</SelectItem>
+                <SelectItem value="fem">FEM.</SelectItem>
+                <SelectItem value="na">NA</SelectItem>
+              </SelectContent>
+            </Select>
+            {state.errors?.gender && (
+              <p id="error-gender" className="text-destructive text-sm">
+                {state.errors.gender}
               </p>
             )}
           </div>
@@ -84,23 +131,23 @@ const Personal = ({ className }: ComponentProps<typeof Card>) => {
               </p>
             )}
           </div>
-          <div className="group/field grid gap-2" data-invalid={!!state.errors?.message}>
-            <Label htmlFor="message" className="group-data-[invalid=true]/field:text-destructive">
-              Message <span aria-hidden="true">*</span>
+          <div className="group/field grid gap-2" data-invalid={!!state.errors?.reason}>
+            <Label htmlFor="reason" className="group-data-[invalid=true]/field:text-destructive">
+              Reason for the visit <span aria-hidden="true">*</span>
             </Label>
             <Textarea
-              id="message"
-              name="message"
-              placeholder="Type your message here..."
+              id="reason"
+              name="reason"
+              placeholder="Pain in..."
               className="group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
               disabled={pending}
-              aria-invalid={!!state.errors?.message}
-              aria-errormessage="error-message"
-              defaultValue={state.defaultValues.message}
+              aria-invalid={!!state.errors?.reason}
+              aria-errormessage="error-reason"
+              defaultValue={state.defaultValues.reason}
             />
-            {state.errors?.message && (
-              <p id="error-message" className="text-destructive text-sm">
-                {state.errors.message}
+            {state.errors?.reason && (
+              <p id="error-reason" className="text-destructive text-sm">
+                {state.errors.reason}
               </p>
             )}
           </div>
