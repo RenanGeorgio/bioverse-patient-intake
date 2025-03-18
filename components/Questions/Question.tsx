@@ -5,12 +5,12 @@ import { createClient } from '@/lib/supabase/client';
 import { Database } from '@/lib/schema';
 import { updateQuestion } from '@/lib/supabase/queries';
 
-type Question = Database['public']['Tables']['todos']['Row']
+type Question = Database['public']['Tables']['questionnaire']['Row']
 
 
 const QuestionComponent = ({ question, onDelete }: { question: Question; onDelete: () => void }) => {
   const supabase = createClient();
-  const [isCompleted, setIsCompleted] = useState<boolean | null>(question.is_complete);
+  const [isCompleted, setRecomendation] = useState<string | null>(question.recomendation);
 
   const toggle = () => {
     const id: string | number = question.id;
@@ -20,7 +20,7 @@ const QuestionComponent = ({ question, onDelete }: { question: Question; onDelet
         const { data } = await updateQuestion(supabase, isCompleted, id);
   
         if (data) {
-          setIsCompleted(data.is_complete);
+          setRecomendation(data.recomendation);
         }
       } catch (error) {
         console.log('error', error);
@@ -36,7 +36,7 @@ const QuestionComponent = ({ question, onDelete }: { question: Question; onDelet
     <li className="w-full block cursor-pointer hover:bg-200 focus:outline-none focus:bg-200 transition duration-150 ease-in-out">
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="min-w-0 flex-1 flex items-center">
-          <div className="text-sm leading-5 font-medium truncate">{question.task}</div>
+          <div className="text-sm leading-5 font-medium truncate">{question?.answers}</div>
         </div>
         <div>
           <input

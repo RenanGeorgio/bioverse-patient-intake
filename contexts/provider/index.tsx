@@ -23,7 +23,7 @@ const AppProvider = ({ children }: PropsWithChildren) => {
             const value = await setAdmin(admin);
             if (value && router) {
                 setCurrentUser(admin);
-                return router.push('/');
+                return router.push('/admin');
             }
         }
 
@@ -36,7 +36,7 @@ const AppProvider = ({ children }: PropsWithChildren) => {
         if (value && router) {
             setCurrentUser({ name, email, id });
             console.log(router);
-            return router.push('/');
+            return router.push('/home');
         }
     }
 

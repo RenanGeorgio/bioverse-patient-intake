@@ -1,8 +1,8 @@
 import { cache } from 'react';
 import { SupabaseClient, PostgrestError, User } from '@supabase/supabase-js';
-import { Database } from '@/lib/schema';
+import { Database, Json } from '@/lib/schema';
 
-type Question = Database['public']['Tables']['todos']['Row'];
+type Question = Database['public']['Tables']['questionnaire']['Row'];
 
 type Props = {
   questions: Question[] | null;
@@ -24,7 +24,7 @@ export const getUser: UserProps = cache(async (supabase: SupabaseClient) => {
 
 export const getQuestions: QuestionsProps = cache(async (supabase: SupabaseClient) => {
   const { data: questions, error } = await supabase
-    .from('todos')
+    .from('questionnaire')
     .select('*')
     .order('id', { ascending: true });
 
@@ -33,20 +33,20 @@ export const getQuestions: QuestionsProps = cache(async (supabase: SupabaseClien
   return { questions, error };
 });
 
-export const addQuestions = async (supabase: SupabaseClient, task: string, id: string | number) => {
+export const addQuestions = async (supabase: SupabaseClient, answers: Json, id: string | number) => {
     const { data: todo, error } = await supabase
-        .from('todos')
-        .insert({ task, user_id: id })
+        .from('questionnaire')
+        .insert({ answers, user_id: id })
         .select()
         .single();
   
     return { todo, error };
 };
 
-export const updateQuestion = cache(async (supabase: SupabaseClient, isCompleted: boolean | null, id: string | number) => {
+export const updateQuestion = cache(async (supabase: SupabaseClient, isRecomendation: string | null, id: string | number) => {
     const { data } = await supabase
-        .from('todos')
-        .update({ is_complete: !isCompleted })
+        .from('questionnaire')
+        .update({ recomendation: isRecomendation })
         .eq('id', id)
         .throwOnError()
         .select()
