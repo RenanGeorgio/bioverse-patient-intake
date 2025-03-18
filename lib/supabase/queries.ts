@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import { SupabaseClient, PostgrestError, User } from '@supabase/supabase-js';
-import { Database, Json } from '@/lib/schema';
+import { Database, Obj } from '@/lib/schema';
 
 type Question = Database['public']['Tables']['questionnaire']['Row'];
 
@@ -33,7 +33,7 @@ export const getQuestions: QuestionsProps = cache(async (supabase: SupabaseClien
   return { questions, error };
 });
 
-export const addQuestions = async (supabase: SupabaseClient, answers: Json, id: string | number) => {
+export const addQuestions = async (supabase: SupabaseClient, answers: Obj, id: string | number) => {
     const { data: todo, error } = await supabase
         .from('questionnaire')
         .insert({ answers, user_id: id })

@@ -36,7 +36,7 @@ const QuestionComponent = ({ question, onDelete }: { question: Question; onDelet
     <li className="w-full block cursor-pointer hover:bg-200 focus:outline-none focus:bg-200 transition duration-150 ease-in-out">
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="min-w-0 flex-1 flex items-center">
-          <div className="text-sm leading-5 font-medium truncate">{question?.answers}</div>
+          <div className="text-sm leading-5 font-medium truncate">questions.answer</div>
         </div>
         <div>
           <input
