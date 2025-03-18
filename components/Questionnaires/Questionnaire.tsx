@@ -7,7 +7,7 @@ import { updateQuestion } from '@/lib/supabase/queries';
 import { getURL } from '@/utils/helpers';
 
 
-type Question = Database['public']['Tables']['todos']['Row']
+type Question = Database['public']['Tables']['questionnaire']['Row']
 
 const Questionnaire = ({ question, onDelete }: { question: Question; onDelete: () => void }) => {
   const supabase = createClient();
@@ -20,7 +20,7 @@ const Questionnaire = ({ question, onDelete }: { question: Question; onDelete: (
         const { data } = await updateQuestion(supabase, isCompleted, id);
   
         if (data) {
-          setIsCompleted(data.is_complete);
+          setIsCompleted(data.recomendation);
         }
       } catch (error) {
         console.log('error', error);
@@ -44,7 +44,7 @@ const Questionnaire = ({ question, onDelete }: { question: Question; onDelete: (
           legacyBehavior
           >
             <div className="min-w-0 flex-1 flex items-center">
-                <div className="text-sm leading-5 font-medium truncate">{question?.task}</div>
+                <div className="text-sm leading-5 font-medium truncate">{question?.answers}</div>
             </div>
         </Link>
         <button

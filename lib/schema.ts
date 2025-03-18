@@ -9,26 +9,26 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      todos: {
+      questionnaire: {
         Row: {
           id: number
           inserted_at: string
-          is_complete: boolean | null
-          task: string | null
+          recomendation: string | null
+          answers: Json | null
           user_id: string
         }
         Insert: {
           id?: number
           inserted_at?: string
-          is_complete?: boolean | null
-          task?: string | null
+          recomendation?: string | null
+          answers?: Json | null
           user_id: string
         }
         Update: {
           id?: number
           inserted_at?: string
-          is_complete?: boolean | null
-          task?: string | null
+          recomendation?: string | null
+          answers?: Json | null
           user_id?: string
         }
       }

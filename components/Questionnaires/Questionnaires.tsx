@@ -6,7 +6,7 @@ import { Database } from '@/lib/schema';
 import { getQuestions } from '@/lib/supabase/queries';
 import Questionnaire from './Questionnaire';
 
-type Question = Database['public']['Tables']['todos']['Row']
+type Question = Database['public']['Tables']['questionnaire']['Row']
 
 
 export default function Questionnaires() {
@@ -16,7 +16,7 @@ export default function Questionnaires() {
 
   const deleteQuestion = async (id: number) => {
     try {
-      await supabase.from('todos').delete().eq('id', id).throwOnError();
+      await supabase.from('questionnaire').delete().eq('id', id).throwOnError();
       setQuestions(questions.filter((x) => x.id != id));
     } catch (error) {
       console.log('error', error);

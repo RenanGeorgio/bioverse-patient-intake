@@ -12,12 +12,12 @@ const Signin = () => {
     updateUser(user);
   }
 
-  const submitContent = (name: string, email: string) => {
+  const submitContent = (name: string, email: string, admin: boolean) => {
     const u: AppUser = {
       name: name,
       email: email,
       id: undefined,
-      is_admin: false,
+      is_admin: admin,
     };
 
     sendToUpdate(u);

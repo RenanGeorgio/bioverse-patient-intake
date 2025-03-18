@@ -1,12 +1,13 @@
 import { redirect } from 'next/navigation';
 import Head from 'next/head';
 import { createClient } from '@/lib/supabase/server';
+import Intake from '@/components/Intake';
 import { getURL } from '@/utils/helpers';
 
 import '@/styles/app.css';
   
 
-export default async function App() {
+export default async function HomePage() {
   const supabase = await createClient();
 
   const {
@@ -25,6 +26,16 @@ export default async function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={getURL("/favicon.ico")} />
       </Head>
+      <div className="w-full h-full bg-200">
+        {user && (
+          <div
+            className="w-full h-full flex flex-col justify-center items-center p-4"
+            style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
+          >
+            <Intake />
+          </div>
+        )}
+      </div>
     </>
   );
 }
