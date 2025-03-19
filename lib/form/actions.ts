@@ -5,7 +5,9 @@ import { personalSchema, medHistorySchema } from '@/lib/form/schema';
 
 
 export async function personalFormAction(_prevState: unknown, formData: FormData) {
-  const defaultValues = z.record(z.string(), z.string()).parse(Object.fromEntries(formData.entries()));
+  const data = Object.fromEntries(formData.entries());
+  console.log(data)
+  const defaultValues = z.record(z.string(), z.string()).parse(data);
 
   try {
     const data = personalSchema.parse(Object.fromEntries(formData))
