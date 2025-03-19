@@ -1,10 +1,58 @@
 "use server"
 
 import { z } from 'zod';
+import { setAnswers } from '@/controllers/questions';
+import { createClient } from '@/lib/supabase/server';
 import { personalSchema, medHistorySchema } from '@/lib/form/schema';
 
 
 export async function personalFormAction(_prevState: unknown, formData: FormData) {
+  const supabase = await createClient();
+  const data = Object.fromEntries(formData.entries());
+  console.log(data);
+  try {
+    const validatedData = personalSchema.parse(data);
+    console.log(validatedData);
+    const { todo, error } = await addQuestions(supabase, validatedData, userRef.current?.id);
+
+    const result = await setAnswers(validatedData);
+
+    if (!result) {
+      return {
+        ..._prevState,
+        success: false,
+        errors,
+      }
+    }
+
+    console.log(result);
+
+    return {
+      ..._prevState,
+      success: true,
+      errors: null,
+      defaultValues: validatedData,
+    }
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return {
+        defaultValues,
+        success: false,
+        errors: Object.fromEntries(
+          Object.entries(error.flatten().fieldErrors).map(([key, value]) => [key, value?.join(", ")]),
+        ),
+      }
+    }
+
+    return {
+      defaultValues,
+      success: false,
+      errors: null,
+    }
+  }
+}
+
+export async function personalFormActionBackup(_prevState: unknown, formData: FormData) {
   const data = Object.fromEntries(formData.entries());
   console.log(data)
   const defaultValues = z.record(z.string(), z.string()).parse(data);
@@ -52,6 +100,7 @@ export async function personalFormAction(_prevState: unknown, formData: FormData
     }
   }
 }
+
 
 export async function supportFormAction(prevState: any, formData: FormData) {
   const data = Object.fromEntries(formData.entries())

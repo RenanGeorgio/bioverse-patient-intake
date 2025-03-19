@@ -13,8 +13,11 @@ import Textarea from '@/components/Textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/RadioGroup';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/Select';
 
+interface Props extends ComponentProps<typeof Card> {
+  userId: string;
+}
 
-const Personal = ({ className }: ComponentProps<typeof Card>) => {
+const Personal = ({ userId, className }: Props) => {
   const [state, formAction, pending] = useFormState(personalFormAction, {
     defaultValues: {
       name: "",
