@@ -3,32 +3,33 @@
 import { z } from 'zod';
 import { setAnswers } from '@/controllers/questions';
 import { createClient } from '@/lib/supabase/server';
+import { addQuestions } from '@/lib/supabase/queries';
 import { personalSchema, medHistorySchema } from '@/lib/form/schema';
 
 
-export async function personalFormAction(_prevState: unknown, formData: FormData) {
+export async function personalFormAction(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const data = Object.fromEntries(formData.entries());
   console.log(data);
   try {
     const validatedData = personalSchema.parse(data);
     console.log(validatedData);
-    const { todo, error } = await addQuestions(supabase, validatedData, userRef.current?.id);
+    const { todo, error } = await addQuestions(supabase, validatedData, "1");
 
     const result = await setAnswers(validatedData);
 
     if (!result) {
       return {
-        ..._prevState,
+        ...prevState,
         success: false,
-        errors,
+        errors: null,
       }
     }
 
     console.log(result);
 
     return {
-      ..._prevState,
+      ...prevState,
       success: true,
       errors: null,
       defaultValues: validatedData,
@@ -36,7 +37,7 @@ export async function personalFormAction(_prevState: unknown, formData: FormData
   } catch (error) {
     if (error instanceof z.ZodError) {
       return {
-        defaultValues,
+        data,
         success: false,
         errors: Object.fromEntries(
           Object.entries(error.flatten().fieldErrors).map(([key, value]) => [key, value?.join(", ")]),
@@ -45,7 +46,7 @@ export async function personalFormAction(_prevState: unknown, formData: FormData
     }
 
     return {
-      defaultValues,
+      data,
       success: false,
       errors: null,
     }

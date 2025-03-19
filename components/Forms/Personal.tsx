@@ -14,7 +14,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/RadioGroup';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/Select';
 
 interface Props extends ComponentProps<typeof Card> {
-  userId: string;
+  userId: string | undefined;
 }
 
 const Personal = ({ userId, className }: Props) => {
