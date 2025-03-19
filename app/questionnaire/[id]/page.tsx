@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import Head from 'next/head';
-import Questionnaires from '@/components/Questionnaires';
+//import Questionnaires from '@/components/Questionnaires';
 import { getURL } from '@/utils/helpers';
 
 export default async function QuestionnairePage({
@@ -34,7 +34,7 @@ export default async function QuestionnairePage({
           className="w-full h-full flex flex-col justify-center items-center p-4"
           style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
         >
-          <Questionnaires />
+          {/*<Questionnaires />*/}
         </div>
       </div>
     </>

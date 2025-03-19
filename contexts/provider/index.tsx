@@ -19,7 +19,12 @@ const AppProvider = ({ children }: PropsWithChildren) => {
         console.log(u);
 
         if (is_admin) {
-            const admin: AppUser = { "admin", "admin@admin.com", "admin" };
+            const admin: AppUser = {
+                name: "admin",
+                email: "admin@admin.com",
+                id: "admin",
+            }
+            
             const value = await setAdmin(admin);
             if (value && router) {
                 setCurrentUser(admin);

@@ -1,3 +1,7 @@
+export type Obj = {
+  [key: string]: any;
+}
+
 export type Json =
   | string
   | number
@@ -14,21 +18,21 @@ export interface Database {
           id: number
           inserted_at: string
           recomendation: string | null
-          answers: Json | null
+          answers: Obj | null
           user_id: string
         }
         Insert: {
           id?: number
           inserted_at?: string
           recomendation?: string | null
-          answers?: Json | null
+          answers?: Obj | null
           user_id: string
         }
         Update: {
           id?: number
           inserted_at?: string
           recomendation?: string | null
-          answers?: Json | null
+          answers?: Obj | null
           user_id?: string
         }
       }

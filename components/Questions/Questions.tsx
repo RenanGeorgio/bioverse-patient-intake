@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
 import { useEffect, useState, useRef } from 'react';
 import { User } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
-import { Database } from '@/lib/schema';
+import { Database, Obj } from '@/lib/schema';
 import { getQuestions, addQuestions } from '@/lib/supabase/queries';
 import QuestionComponent from './Question';
 
@@ -20,8 +20,8 @@ export default function QuestionList() {
   const [errorText, setErrorText] = useState('');
 
   const addQuestion = async (taskText: string) => {
-    const task = taskText.trim();
-    if ((task.length) && (userRef.current)) {
+    const task = JSON.parse(taskText.trim()) as Obj;
+    if (task && userRef?.current) {
       const { todo, error } = await addQuestions(supabase, task, userRef.current?.id);
 
       if (error) {
