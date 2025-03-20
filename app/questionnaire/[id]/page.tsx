@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import Head from 'next/head';
+import { getQuestion } from '@/lib/supabase/queries';
 //import Questionnaires from '@/components/Questionnaires';
 import { getURL } from '@/utils/helpers';
 

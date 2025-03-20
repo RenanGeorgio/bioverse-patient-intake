@@ -43,7 +43,7 @@ export default function Questionnaires() {
 
   return (
     <div className="w-full">
-      <h1 className="mb-12">Questions List</h1>
+      <h1 className="mb-12">àtients Answers</h1>
       <div className="bg-white shadow overflow-hidden rounded-md">
         <ul>
           {questions.map((question) => (

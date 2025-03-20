@@ -25,9 +25,6 @@ export default function Navlinks() {
           <nav className="ml-6 space-x-2 lg:block">
             {currentUser && (
               <>
-                <Link href="/" className={s.link}>
-                  Questions
-                </Link>
                 <Link href="/account" className={s.link}>
                   Account
                 </Link>

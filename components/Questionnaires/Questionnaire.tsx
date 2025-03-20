@@ -44,7 +44,7 @@ const Questionnaire = ({ question, onDelete }: { question: Question; onDelete: (
           legacyBehavior
           >
             <div className="min-w-0 flex-1 flex items-center">
-                <div className="text-sm leading-5 font-medium truncate">question.answers</div>
+                <div className="text-sm leading-5 font-medium truncate">{question.recomendation}</div>
             </div>
         </Link>
         <button

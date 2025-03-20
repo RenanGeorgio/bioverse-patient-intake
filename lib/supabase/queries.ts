@@ -65,3 +65,15 @@ export const checkUser = cache(async (supabase: SupabaseClient, name: string, em
 
   return user;
 });
+
+export const getQuestion = cache(async (supabase: SupabaseClient, id: string | number) => {
+  const { data: question, error } = await supabase
+    .from('questionnaire')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  console.log(questions);
+
+  return { question, error };
+});
