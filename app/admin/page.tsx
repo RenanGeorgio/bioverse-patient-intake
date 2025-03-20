@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import Head from 'next/head';
 import { createClient } from '@/lib/supabase/server';
-import QuestionList from '@/components/Questions';
+import Questionnaires from '@/components/Questionnaires';
 import { getURL } from '@/utils/helpers';
 
 import '@/styles/app.css';
@@ -32,7 +32,7 @@ export default async function AdminPage() {
             className="w-full h-full flex flex-col justify-center items-center p-4"
             style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
           >
-            <QuestionList />
+            <Questionnaires />
           </div>
         )}
       </div>
